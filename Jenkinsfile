@@ -7,7 +7,7 @@ pipeline{
     stages{
         stage ("Build"){
             steps{
-                echo "Running the maven tests"
+                echo "Running the maven tests from Jenkinsfile"
                 bat "mvn clean test"
             }
         }
