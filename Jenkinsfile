@@ -10,7 +10,7 @@ pipeline{
         stage ("Build"){
             steps{
                 echo "Running the maven tests from Jenkinsfile"
-                sh "docker run -d --network="host" new-app mvn -f /home/MavenFromScratch/pom.xml clean test"
+                bat "docker run -d --network="host" new-app mvn -f /home/MavenFromScratch/pom.xml clean test"
             }
         }
     }
