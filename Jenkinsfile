@@ -1,15 +1,21 @@
 pipeline{
     agent {
-		docker {image "new-app"}
+		docker {image "maven:3.6.0-jdk-8-alpine"}
 	}
     tools{
         maven "MAVEN"
     }
 
     stages{
-        stage ("Build"){
+        stage ("Build Image"){
             steps{
-                echo "Running the maven tests from Jenkinsfile"
+                echo "building docker image from jenkinsfile and dockerfile"
+                sh "docker build -t new-app ."
+            }
+        }
+		stage ("Docker Tests"){
+            steps{
+                echo "Running the docker maven tests from Jenkinsfile"
                 sh "docker run -d --network='host' new-app mvn -f /home/MavenFromScratch/pom.xml clean test"
             }
         }
