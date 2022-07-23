@@ -1,5 +1,7 @@
 pipeline{
-    agent any
+    agent {
+		docker {image "my-app"}
+	}
     tools{
         maven "MAVEN"
     }
@@ -8,7 +10,7 @@ pipeline{
         stage ("Build"){
             steps{
                 echo "Running the maven tests from Jenkinsfile"
-                bat "mvn clean test"
+                sh "docker run -d --network="host" new-app mvn -f /home/MavenFromScratch/pom.xml clean test"
             }
         }
     }
