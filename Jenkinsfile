@@ -1,6 +1,6 @@
 pipeline{
     agent {
-		docker {image "my-app"}
+		docker {image "new-app"}
 	}
     tools{
         maven "MAVEN"
